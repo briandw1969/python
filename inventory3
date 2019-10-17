@@ -11,17 +11,17 @@ def update():
     conn = sqlite3.connect("dbname.db")
     cur = conn.cursor()
     
-    record_id = select.get()
+    record_id = select_edit.get()
     cur.execute("""UPDATE inventory SET
-                item_name = :item,
-                price_name = :price,
-                amount_name = :amount
+                item = :item,
+                price = :price,
+                amount = :amount
                 
                 WHERE oid = :oid""",
                 {
-                    'item': item_name.get(),
-                    'price': price_name.get(),
-                    'amount': amount_name.get(),
+                    'item': item.get(),
+                    'price': price.get(),
+                    'amount': amount.get(),
                     'oid': record_id
                 })
     
@@ -41,32 +41,32 @@ def load():
     conn = sqlite3.connect("dbname.db")
     cur = conn.cursor()
     
-    record_id = select.get()
+    record_id = select_edit.get()
     cur.execute("SELECT * FROM inventory WHERE oid = " + record_id)
     records = cur.fetchall()
     
     for record in records:
-        item_name.insert(0, record[0])
-        price_name.insert(0, record[1])
-        amount_name.insert(0, record[2])
+        item.insert(0, record[0])
+        price.insert(0, record[1])
+        amount.insert(0, record[2])
         
     conn.commit
     cur.close()
     
-global item_name
-global price_name
-global amount_name    
+global item
+global price
+global amount    
     
     
 #text boxes
-item_name = Entry(root, width=30)
-item_name.grid(row=0, column=1, padx=20)
-price_name = Entry(root, width=30)
-price_name.grid(row=1, column=1, padx=20)
-amount_name = Entry(root, width=30)
-amount_name.grid(row=2, column=1, padx=20)
-select = Entry(root, width=30)
-select.grid(row=3, column=1, padx=20)
+item = Entry(root, width=30)
+item.grid(row=0, column=1, padx=20)
+price = Entry(root, width=30)
+price.grid(row=1, column=1, padx=20)
+amount = Entry(root, width=30)
+amount.grid(row=2, column=1, padx=20)
+select_edit = Entry(root, width=30)
+select_edit.grid(row=3, column=1, padx=20)
 
 #labels
 item_label = Label(root, text="Item Name")
