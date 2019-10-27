@@ -5,22 +5,9 @@ root = Tk()
 root.title("Calculator")
 root.geometry("450x200")
 
-# Defining the math 
-def sub():
-    input_num = input.get() # users submission
-    answer = int(input_num) / 3 # the math make sure to make string an int
-    
-    
-    # answer label
-
-    
-    ###################################### everything above this is the function
-    
-
 
 r = IntVar()
 r.set("1")
-
 
 
 def clicked(value):
